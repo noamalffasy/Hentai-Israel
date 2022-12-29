@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import ShortenLinkForm from "../components/ShortenLinkForm";
-import ButtonContainer from "./buttons/ButtonContainer";
+import ButtonContainer from "./buttons/containers/ButtonContainer";
 import PlusIcon from "./icons/PlusIcon";
 
 export default function ShortenLink() {
