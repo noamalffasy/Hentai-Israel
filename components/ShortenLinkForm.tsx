@@ -44,7 +44,7 @@ export default function ShortenLinkForm({ onUrlGenerated }: Props) {
 
   return (
     <form
-      className={`w-full space-y-4 overflow-hidden rounded-xl bg-white px-2 py-4 shadow-xl shadow-blue-400/50 md:px-4 lg:px-6 ${
+      className={`w-full space-y-4 overflow-hidden rounded-xl bg-white px-2 py-4 shadow-lg shadow-blue-400/25 md:px-4 lg:px-6 ${
         url.length === 0 ? "!mb-14" : ""
       }`}
       onSubmit={handleSubmit}

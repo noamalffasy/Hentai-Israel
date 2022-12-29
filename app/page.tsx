@@ -3,7 +3,7 @@ import ShortenLink from "../components/ShortenLink";
 export default function Home() {
   return (
     <main className="flex min-h-full flex-col bg-white [direction:rtl]">
-      <div className="mt-8 h-16 w-full bg-gradient-to-r from-blue-700 to-blue-400 shadow-xl shadow-blue-400/50"></div>
+      <div className="mt-8 h-16 w-full bg-gradient-to-r from-blue-700 to-blue-400 shadow-stripe shadow-blue-400/50"></div>
       <div className="lg:max-w-8xl mx-auto flex w-full max-w-2xl flex-1 flex-col justify-center px-4 py-12 md:py-24 lg:px-8 xl:px-12">
         <div className="space-y-10">
           <div className="text-center">
@@ -17,7 +17,7 @@ export default function Home() {
           <ShortenLink />
         </div>
       </div>
-      <div className="mb-8 h-16 w-full bg-gradient-to-r from-blue-700 to-blue-400 shadow-xl shadow-blue-400/50"></div>
+      <div className="mb-8 h-16 w-full bg-gradient-to-r from-blue-700 to-blue-400 shadow-stripe shadow-blue-400/50"></div>
     </main>
   );
 }
