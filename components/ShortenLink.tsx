@@ -33,7 +33,7 @@ export default function ShortenLink() {
       ))}
       {linksGenerated[linksGenerated.length - 1] && (
         <ButtonContainer
-          className="rounded-full px-2 py-2"
+          className="rounded-full px-2 py-2 mt-8"
           onClick={() => setUrlsGenerated([...linksGenerated, null])}
         >
           <PlusIcon className="h-6 w-6" />
