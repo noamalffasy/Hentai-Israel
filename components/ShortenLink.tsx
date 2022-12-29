@@ -10,8 +10,6 @@ export default function ShortenLink() {
     null,
   ]);
 
-  console.log(linksGenerated);
-
   return (
     <div className="flex flex-col items-center space-y-4">
       {linksGenerated.map((_, i) => (

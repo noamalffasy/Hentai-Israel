@@ -1,8 +1,10 @@
 "use client";
 
 import { FormEventHandler, useState } from "react";
+import { LinkError } from "../pages/api/link";
 import CopyButton from "./buttons/CopyButton";
 import ShortenButton from "./buttons/ShortenButton";
+import ErrorMessage from "./ErrorMessage";
 import LinkIcon from "./icons/LinkIcon";
 
 interface Props {
@@ -12,6 +14,8 @@ interface Props {
 export default function ShortenLinkForm({ onUrlGenerated }: Props) {
   const [isLoading, setLoading] = useState(false);
   const [url, setUrl] = useState("");
+
+  const [error, setError] = useState<number | null>(null);
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
     setLoading(true);
@@ -23,20 +27,30 @@ export default function ShortenLinkForm({ onUrlGenerated }: Props) {
     )! as HTMLInputElement;
 
     try {
-      const res = await fetch("/api/link", {
+      const response = await fetch("/api/link", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ url: urlElem.value }),
       });
-      const result = (await res.json()) as { url: string };
+
+      if (!response.ok) {
+        const result = (await response.json()) as { error: number };
+
+        throw result.error;
+      }
+
+      const result = (await response.json()) as { url: string };
 
       urlElem.value = result.url;
-      setUrl(result.url);
-      console.log(onUrlGenerated);
 
+      setUrl(result.url);
       onUrlGenerated(result.url);
     } catch (e) {
-      console.error(e);
+      if (typeof e === "number") {
+        setError(e);
+      } else {
+        setError(LinkError.Unknown);
+      }
     }
 
     setLoading(false);
@@ -54,17 +68,19 @@ export default function ShortenLinkForm({ onUrlGenerated }: Props) {
         <input
           className="h-full flex-1 bg-transparent outline-none ring-0 disabled:opacity-50"
           placeholder="הדבק קישור לקצר להנטאי.ישראל"
-          type="text"
+          type="url"
           name="url"
           id="url"
           disabled={isLoading || url.length > 0}
+          required
         />
         {url.length === 0 ? (
           <ShortenButton className="hidden sm:block" isLoading={isLoading} />
         ) : (
-          <CopyButton data={url} />
+          <CopyButton data={`https://${url}`} />
         )}
       </div>
+      {error !== null && <ErrorMessage error={error} />}
       {url.length === 0 && (
         <ShortenButton
           className="block w-full sm:hidden"
