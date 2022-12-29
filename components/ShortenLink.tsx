@@ -12,8 +12,8 @@ export default function ShortenLink() {
     <div className="flex flex-col items-center space-y-4">
       {Array(numLinksGenerated)
         .fill(0)
-        .map(() => (
-          <ShortenLinkForm />
+        .map((_, i) => (
+          <ShortenLinkForm key={i} />
         ))}
       <ButtonContainer
         className="rounded-full px-2 py-2"
