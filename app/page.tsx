@@ -10,7 +10,7 @@ export default function Home() {
             <p className="inline bg-gradient-to-r from-blue-700 to-blue-400 bg-clip-text text-5xl font-semibold tracking-tight text-transparent md:text-7xl">
               הנטאי.ישראל
             </p>
-            <p className="mt-3 text-xl tracking-tight text-slate-400 md:text-4xl">
+            <p className="mt-3 text-xl tracking-tight text-slate-500 md:text-4xl">
               הנטאי כחול לבן
             </p>
           </div>
