@@ -1,4 +1,7 @@
-import "../styles/globals.css";
+import { Rubik } from "@next/font/google";
+import "./globals.css";
+
+const rubik = Rubik({ subsets: ["hebrew"], variable: "--font-rubik" });
 
 export default function RootLayout({
   children,
@@ -6,8 +9,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="he">
-      <body>{children}</body>
+    <html className="h-full w-full" lang="he">
+      <body className={`${rubik.variable} h-full w-full font-sans antialiased`}>
+        {children}
+      </body>
     </html>
   );
 }
