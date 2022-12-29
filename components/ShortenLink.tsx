@@ -6,21 +6,39 @@ import ButtonContainer from "./buttons/ButtonContainer";
 import PlusIcon from "./icons/PlusIcon";
 
 export default function ShortenLink() {
-  const [numLinksGenerated, setNumLinksGenerated] = useState(1);
+  const [linksGenerated, setUrlsGenerated] = useState<(string | null)[]>([
+    null,
+  ]);
+
+  console.log(linksGenerated);
 
   return (
     <div className="flex flex-col items-center space-y-4">
-      {Array(numLinksGenerated)
-        .fill(0)
-        .map((_, i) => (
-          <ShortenLinkForm key={i} />
-        ))}
-      <ButtonContainer
-        className="rounded-full px-2 py-2"
-        onClick={() => setNumLinksGenerated(numLinksGenerated + 1)}
-      >
-        <PlusIcon className="h-6 w-6" />
-      </ButtonContainer>
+      {linksGenerated.map((_, i) => (
+        <ShortenLinkForm
+          onUrlGenerated={(url) => {
+            console.log("url generated");
+
+            setUrlsGenerated([
+              ...linksGenerated.slice(0, linksGenerated.length - 1),
+              url,
+            ]);
+            console.log([
+              ...linksGenerated.slice(0, linksGenerated.length - 1),
+              url,
+            ]);
+          }}
+          key={i}
+        />
+      ))}
+      {linksGenerated[linksGenerated.length - 1] && (
+        <ButtonContainer
+          className="rounded-full px-2 py-2"
+          onClick={() => setUrlsGenerated([...linksGenerated, null])}
+        >
+          <PlusIcon className="h-6 w-6" />
+        </ButtonContainer>
+      )}
     </div>
   );
 }
