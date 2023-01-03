@@ -1,4 +1,4 @@
-const SITE_URL = "https://hentai-israel.vercel.app";
+const SITE_URL = "https://הנטאי.ישראל";
 
 export default function Head() {
   return (
