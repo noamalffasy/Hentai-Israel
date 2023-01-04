@@ -10,6 +10,7 @@ export default function RootLayout({
 }) {
   return (
     <html className="h-full w-full" lang="he">
+      <head></head>
       <body className={`${rubik.variable} h-full w-full font-sans antialiased`}>
         {children}
       </body>
