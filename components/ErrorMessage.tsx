@@ -10,6 +10,8 @@ function parseError(error: LinkError): string {
       return "לא הוכנס קישור";
     case LinkError.InvalidUrl:
       return "הקישור שהוכנס לא תקין\nהקישור צריך להתחיל ב-//:http או ב- //:https";
+    case LinkError.DisallowedDomain:
+      return "לא ניתן ליצור קישור לאתר זה.";
     case LinkError.InvalidMethod:
       return "הבקשה נשלחה במתודה לא נכונה. נדמה שהמתכנת מטומטם";
     case LinkError.CouldntGenerateShortcode:

@@ -1,5 +1,6 @@
 import { Prisma, PrismaClient } from "@prisma/client";
 import type { NextApiRequest, NextApiResponse } from "next";
+import url from "node:url";
 
 const MAX_TRIES_TO_GENERATE_SHORTCODE = 10;
 
@@ -7,6 +8,7 @@ export enum LinkError {
   Empty,
   InvalidUrl,
   InvalidMethod,
+  DisallowedDomain,
   ShortcodeExists,
   CouldntGenerateShortcode,
   Unknown,
@@ -63,6 +65,10 @@ export default async function handler(
 
   if (!body.url.startsWith("http://") && !body.url.startsWith("https://")) {
     return res.status(400).json({ error: LinkError.InvalidUrl });
+  }
+
+  if (url.domainToUnicode(new URL(body.url).origin) !== "הנטאי.ישראל") {
+    return res.status(400).json({ error: LinkError.DisallowedDomain });
   }
 
   let didAddUrl = false;
