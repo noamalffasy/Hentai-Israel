@@ -1,6 +1,6 @@
 import { Prisma, PrismaClient } from "@prisma/client";
 import type { NextApiRequest, NextApiResponse } from "next";
-import url from "node:url";
+import url from "url";
 
 const MAX_TRIES_TO_GENERATE_SHORTCODE = 10;
 
