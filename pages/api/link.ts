@@ -112,6 +112,7 @@ export default async function handler(
 
     try {
       await addUrl(body.url, shortcode);
+      didAddUrl = true;
     } catch (e) {
       if (typeof e === "number") {
         if (e === LinkError.ShortcodeExists) {
@@ -127,8 +128,6 @@ export default async function handler(
         }
       }
     }
-
-    didAddUrl = true;
   }
 
   // @ts-ignore
