@@ -26,6 +26,27 @@ function generateShortcode(): string {
     .join("");
 }
 
+async function getIdByUrl(url: string): Promise<string | null> {
+  const prisma = new PrismaClient();
+  let id: string | null = null;
+
+  try {
+    const target = await prisma.url.findFirst({
+      where: {
+        targetUrl: url,
+      },
+    });
+
+    id = target?.id ?? null;
+  } catch (e) {
+    console.error(e);
+  } finally {
+    await prisma.$disconnect();
+  }
+
+  return id;
+}
+
 async function addUrl(url: string, shortcode: string): Promise<void> {
   const prisma = new PrismaClient();
 
@@ -46,6 +67,7 @@ async function addUrl(url: string, shortcode: string): Promise<void> {
     await prisma.$disconnect();
   }
 }
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -75,7 +97,16 @@ export default async function handler(
   let shortcode: string;
   let tries = 0;
 
-  do {
+  if (!body.shortcode) {
+    const existingShortcode = await getIdByUrl(body.url);
+
+    if (!!existingShortcode) {
+      shortcode = existingShortcode;
+      didAddUrl = true;
+    }
+  }
+
+  while (!didAddUrl) {
     shortcode = body.shortcode ?? generateShortcode();
     ++tries;
 
@@ -98,7 +129,8 @@ export default async function handler(
     }
 
     didAddUrl = true;
-  } while (!didAddUrl);
+  }
 
+  // @ts-ignore
   return res.status(200).json({ url: `הנטאי.ישראל/${shortcode}` });
 }
