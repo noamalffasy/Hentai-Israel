@@ -89,7 +89,7 @@ export default async function handler(
     return res.status(400).json({ error: LinkError.InvalidUrl });
   }
 
-  if (url.domainToUnicode(new URL(body.url).hostname) !== "הנטאי.ישראל") {
+  if (url.domainToUnicode(new URL(body.url).hostname) === "הנטאי.ישראל") {
     return res.status(400).json({ error: LinkError.DisallowedDomain });
   }
 
