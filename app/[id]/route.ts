@@ -1,6 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 
-import type { NextApiRequest, NextApiResponse } from "next";
+import { redirect } from "next/navigation";
+import { type NextRequest } from "next/server";
 
 async function getTargetUrl(id: string): Promise<string | null> {
   const prisma = new PrismaClient();
@@ -24,16 +25,15 @@ async function getTargetUrl(id: string): Promise<string | null> {
   return targetUrl;
 }
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
+export async function GET(
+  _: NextRequest,
+  { params: { id } }: { params: { id: string } }
 ) {
-  const id = req.query.id as string;
   const target = await getTargetUrl(decodeURIComponent(id));
 
-  if (target) {
-    return res.redirect(301, target!);
+  if (target !== null) {
+    return redirect(target);
   }
 
-  return res.redirect("/");
+  return redirect("/");
 }

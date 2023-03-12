@@ -1,7 +1,7 @@
 "use client";
 
 import { FormEventHandler, useState } from "react";
-import { LinkError } from "../pages/api/link";
+import { LinkError } from "../app/api/link/route";
 import CopyButton from "./buttons/CopyButton";
 import ShortenButton from "./buttons/ShortenButton";
 import ErrorMessage from "./ErrorMessage";

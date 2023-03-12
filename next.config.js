@@ -2,16 +2,9 @@
 const nextConfig = {
   experimental: {
     appDir: true,
+    typedRoutes: true,
   },
-  reactStrictMode: true,
-  async rewrites() {
-    return [
-      {
-        source: '/:id',
-        destination: '/api/redirectLink'
-      }
-    ]
-  }
+  reactStrictMode: true
 };
 
 module.exports = nextConfig;

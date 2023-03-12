@@ -1,4 +1,4 @@
-import { LinkError } from "../pages/api/link";
+import { LinkError } from "../app/api/link/route";
 
 interface Props {
   error: number;
