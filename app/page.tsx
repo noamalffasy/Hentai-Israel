@@ -1,5 +1,43 @@
 import ShortenLink from "../components/ShortenLink";
 
+const SITE_URL = "https://הנטאי.ישראל";
+
+export const metadata = {
+  title: "הנטאי.ישראל | מקצר הקישורים הישראלי ביותר",
+  description: "הנטאי. כחול לבן.",
+  openGraph: {
+    title: "הנטאי.ישראל",
+    description: "הנטאי. כחול לבן.",
+    url: SITE_URL,
+    siteName: "הנטאי.ישראל",
+    images: [
+      {
+        url: `${SITE_URL}/og.jpg`,
+        width: 1200,
+        height: 630,
+      },
+    ],
+    type: "website",
+    locale: "he_IL",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "הנטאי.ישראל",
+    description: "הנטאי. כחול לבן.",
+    images: [`${SITE_URL}/og.jpg`],
+  },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", type: "image/x-icon" },
+      { url: "/favicon-32x32.png", type: "image/png", sizes: "32x32" },
+      { url: "/favicon-16x16.png", type: "image/png", sizes: "16x16" },
+    ],
+    shortcut: { url: "/favicon.ico", type: "image/x-icon" },
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
+  },
+  manifest: "/site.webmanifest",
+};
+
 export default function Home() {
   return (
     <main className="flex min-h-full flex-col bg-white [direction:rtl]">
