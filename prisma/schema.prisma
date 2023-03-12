@@ -13,7 +13,7 @@ datasource db {
 
 model Url {
   id        String @unique
-  targetUrl String @map("target_url")
+  targetUrl String @map("target_url") @db.Text
 
   @@index([id])
 }
