@@ -11,7 +11,7 @@ interface Props {
   onUrlGenerated: (url: string) => void;
 }
 
-export default function ShortenLinkForm({ onUrlGenerated }: Props) {
+export default function ShortenLinkForm(props: Props) {
   const [isLoading, setLoading] = useState(false);
   const [url, setUrl] = useState("");
 
@@ -44,7 +44,7 @@ export default function ShortenLinkForm({ onUrlGenerated }: Props) {
       urlElem.value = result.url;
 
       setUrl(result.url);
-      onUrlGenerated(result.url);
+      props.onUrlGenerated(result.url);
     } catch (e) {
       if (typeof e === "number") {
         setError(e);
