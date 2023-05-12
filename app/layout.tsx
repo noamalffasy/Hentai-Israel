@@ -1,4 +1,5 @@
 import { Rubik } from "@next/font/google";
+import { Analytics } from "@vercel/analytics/react"; 
 import "./globals.css";
 
 const rubik = Rubik({ subsets: ["hebrew"], variable: "--font-rubik" });
@@ -13,6 +14,7 @@ export default function RootLayout({
       <head></head>
       <body className={`${rubik.variable} h-full w-full font-sans antialiased`}>
         {children}
+        <Analytics />
       </body>
     </html>
   );
