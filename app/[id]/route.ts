@@ -3,6 +3,8 @@ import { PrismaClient } from "@prisma/client";
 import { redirect } from "next/navigation";
 import { type NextRequest } from "next/server";
 
+export const runtime = "edge";
+
 async function getTargetUrl(id: string): Promise<string | null> {
   const prisma = new PrismaClient();
 

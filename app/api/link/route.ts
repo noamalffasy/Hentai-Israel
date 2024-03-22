@@ -2,6 +2,8 @@ import { Prisma, PrismaClient } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 import url from "url";
 
+export const runtime = "edge";
+
 const MAX_TRIES_TO_GENERATE_SHORTCODE = 10;
 
 export enum LinkError {
@@ -132,7 +134,7 @@ export async function POST(req: NextRequest) {
       }
     }
   }
-  
+
   // @ts-ignore
   return NextResponse.json({ url: `הנטאי.ישראל/${shortcode}` });
 }
