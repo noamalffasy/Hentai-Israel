@@ -2,17 +2,9 @@ import { Prisma, PrismaClient } from "@prisma/client";
 import { NextResponse } from "next/server";
 import url from "url";
 
-const MAX_TRIES_TO_GENERATE_SHORTCODE = 10;
+import { LinkError } from "../../../lib/errors";
 
-export enum LinkError {
-  Empty,
-  InvalidUrl,
-  InvalidMethod,
-  DisallowedDomain,
-  ShortcodeExists,
-  CouldntGenerateShortcode,
-  Unknown,
-}
+const MAX_TRIES_TO_GENERATE_SHORTCODE = 10;
 
 function generateShortcode(): string {
   const ALL_CHARACTERS = "אבגדהוזחטיכלמנסעפצקרשת0123456789";
@@ -132,7 +124,7 @@ export async function POST(req: Request) {
       }
     }
   }
-  
+
   // @ts-ignore
   return NextResponse.json({ url: `הנטאי.ישראל/${shortcode}` });
 }

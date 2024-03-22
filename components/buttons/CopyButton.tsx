@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+
 import CheckmarkIcon from "../icons/CheckmarkIcon";
 import CopyIcon from "../icons/CopyIcon";
 import ShortenButtonContainer from "./containers/ShortenButtonContainer";
@@ -13,7 +14,7 @@ interface Props {
 export default function CopyButton({ className, data }: Props) {
   const [showCopied, setShowCopied] = useState(false);
   const [copyTimeout, setCopyTimeout] = useState<NodeJS.Timeout | undefined>(
-    undefined
+    undefined,
   );
 
   return (
@@ -28,7 +29,7 @@ export default function CopyButton({ className, data }: Props) {
         setCopyTimeout(
           setTimeout(() => {
             setShowCopied(false);
-          }, 1000)
+          }, 1000),
         );
       }}
     >

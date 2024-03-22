@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+
 import ShortenLinkForm from "../components/ShortenLinkForm";
 import ButtonContainer from "./buttons/containers/ButtonContainer";
 import PlusIcon from "./icons/PlusIcon";
@@ -31,7 +32,7 @@ export default function ShortenLink() {
       ))}
       {linksGenerated[linksGenerated.length - 1] && (
         <ButtonContainer
-          className="rounded-full px-2 py-2 mt-8"
+          className="mt-8 rounded-full px-2 py-2"
           onClick={() => setUrlsGenerated([...linksGenerated, null])}
         >
           <PlusIcon className="h-6 w-6" />

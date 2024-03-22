@@ -1,10 +1,11 @@
 "use client";
 
 import { FormEventHandler, useState } from "react";
-import { LinkError } from "../app/api/link/route";
+
+import { LinkError } from "../lib/errors";
+import ErrorMessage from "./ErrorMessage";
 import CopyButton from "./buttons/CopyButton";
 import ShortenButton from "./buttons/ShortenButton";
-import ErrorMessage from "./ErrorMessage";
 import LinkIcon from "./icons/LinkIcon";
 
 interface Props {
@@ -23,7 +24,7 @@ export default function ShortenLinkForm(props: Props) {
     e.preventDefault();
 
     const urlElem = e.currentTarget.elements.namedItem(
-      "url"
+      "url",
     )! as HTMLInputElement;
 
     try {
