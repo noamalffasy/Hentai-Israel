@@ -1,5 +1,5 @@
 import { Prisma, PrismaClient } from "@prisma/client";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import url from "url";
 
 const MAX_TRIES_TO_GENERATE_SHORTCODE = 10;
@@ -74,7 +74,7 @@ export async function GET() {
   return NextResponse.json({ error: LinkError.InvalidMethod }, { status: 405 });
 }
 
-export async function POST(req: NextRequest) {
+export async function POST(req: Request) {
   const body = (await req.json()) satisfies {
     url?: string;
     shortcode?: string;

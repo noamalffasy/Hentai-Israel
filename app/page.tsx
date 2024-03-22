@@ -1,8 +1,10 @@
+import type { Metadata } from "next";
+
 import ShortenLink from "../components/ShortenLink";
 
 const SITE_URL = "https://הנטאי.ישראל";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "הנטאי.ישראל | מקצר הקישורים הישראלי ביותר",
   description: "הנטאי. כחול לבן.",
   openGraph: {
